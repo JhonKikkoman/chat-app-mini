@@ -5,7 +5,7 @@ import express from 'express';
 import { createServer } from 'http';
 import mongoose from 'mongoose';
 import { Server } from 'socket.io';
-import { ALLOWED_ORIGIN, MONGODB_URI } from './config.js';
+import { ALLOWED_ORIGIN, MONGODB_URL } from './config.js';
 import onConnection from './socket_io/onConnection.js';
 import { getFilePath } from './utils/file.js';
 import onError from './utils/onError.js';
@@ -41,13 +41,13 @@ app.use(onError);
 
 // подключение к BD
 try {
-  await mongoose.connect(MONGODB_URI, {
+  await mongoose.connect(MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
   console.log(`------Connected to DB------------`);
 } catch (error) {
-  onError(e);
+  onError(error);
 }
 
 const server = createServer(app);
@@ -57,7 +57,7 @@ const io = new Server(server, {
   serveClient: false,
 });
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   onConnection(io, socket);
 });
 

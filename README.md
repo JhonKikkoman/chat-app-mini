@@ -1,2 +1,7 @@
-# Before launch the application, install the packages in directories - client, server.
-## Launch the application with the command -  _npm run dev_ from root
+# Перед запуском приложения, установить необходимые зависимости в директориях - client, server.
+
+## В корне проекта есть файл config.exmaple.js - переименуйте его удалив (.example), 
+## установите свой настройки , в ALLOWED_ORIGIN - указываем откуда на сервер разрешены запросы, пример (http://localhost:3000), в MONGODB_URL - указываем своё подключение БД. 
+
+
+## Для запуска приложения выполните -  _npm run dev_ из корня приложения
